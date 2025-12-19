@@ -1,0 +1,160 @@
+:root {
+    --primary: #ff6b6b;
+    --success: #2ecc71;
+    --warning: #f1c40f;
+    --danger: #e74c3c;
+    --bg: #1a1d1e;
+    --card-bg: #2d3436;
+    --text: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px; /* Padding for small screens */
+}
+
+.timer-card {
+    width: 100%;
+    max-width: 400px; /* Maximum width on desktop */
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    text-align: center;
+}
+
+h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+/* Scaling the SVG for different screens */
+.circle-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem auto;
+    width: 200px; /* Fixed size for the ring */
+    height: 200px;
+}
+
+.time-display {
+    position: absolute;
+    font-size: 3rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums; /* Prevents text jumping */
+}
+
+/* Button Group Responsiveness */
+.controls {
+    display: flex;
+    flex-wrap: wrap; /* Allows buttons to wrap on very small screens */
+    gap: 10px;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+button {
+    flex: 1; /* Buttons grow to fill space */
+    min-width: 80px;
+    padding: 12px 10px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-start { background: var(--success); color: white; }
+.btn-stop { background: var(--warning); color: #333; }
+.btn-reset { background: var(--danger); color: white; }
+
+button:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+}
+
+/* Input Section Styling */
+.settings {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+input[type="number"] {
+    width: 60px;
+    background: #3d4446;
+    border: 1px solid #555;
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+/* MEDIA QUERIES */
+
+/* For very small devices (under 350px width) */
+@media (max-width: 350px) {
+    .timer-card { padding: 1rem; }
+    .circle-container { width: 160px; height: 160px; }
+    .progress-ring { width: 160px; height: 160px; }
+    /* We adjust SVG circle math via CSS if needed, 
+       but keeping a fixed 200px is usually safe for mobile */
+}
+
+/* For Tablets and Desktop */
+@media (min-width: 768px) {
+    .timer-card {
+        max-width: 450px;
+        padding: 3rem;
+    }
+}
+/* 1. Change cursor to a hand pointer */
+button {
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease; /* Smooth transition for all changes */
+    position: relative;
+    overflow: hidden; /* For the ripple effect */
+}
+
+/* 2. Hover State: Button lifts up and brightens */
+button:hover {
+    filter: brightness(1.15);
+    transform: translateY(-3px); /* Lifts the button up */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* 3. Active State: Button looks "pressed" into the screen */
+button:active {
+    transform: translateY(1px); /* Moves down slightly */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    filter: brightness(0.9);
+}
+
+/* 4. Disabled State: If the timer is running, you might disable buttons */
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    transform: none;
+}
