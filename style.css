@@ -8,153 +8,95 @@
     --text: #ffffff;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', system-ui, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 20px; /* Padding for small screens */
+    padding: 20px;
 }
 
 .timer-card {
     width: 100%;
-    max-width: 400px; /* Maximum width on desktop */
+    max-width: 400px;
     background: var(--card-bg);
     padding: 2rem;
     border-radius: 24px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     text-align: center;
 }
 
-h1 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    letter-spacing: 1px;
-    opacity: 0.9;
-}
-
-/* Scaling the SVG for different screens */
 .circle-container {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 1.5rem auto;
-    width: 200px; /* Fixed size for the ring */
-    height: 200px;
+    margin: 2rem auto;
+}
+
+.progress-ring { transform: rotate(-90deg); }
+.ring-bg { fill: none; stroke: #3d4446; stroke-width: 8; }
+.ring-progress {
+    fill: none;
+    stroke: var(--primary);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 565.48; /* 2 * PI * 90 */
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 1s linear;
 }
 
 .time-display {
     position: absolute;
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 700;
-    font-variant-numeric: tabular-nums; /* Prevents text jumping */
+    font-variant-numeric: tabular-nums;
 }
 
-/* Button Group Responsiveness */
 .controls {
     display: flex;
-    flex-wrap: wrap; /* Allows buttons to wrap on very small screens */
-    gap: 10px;
-    justify-content: center;
-    margin-top: 2rem;
+    gap: 12px;
+    margin-bottom: 2rem;
 }
 
 button {
-    flex: 1; /* Buttons grow to fill space */
-    min-width: 80px;
-    padding: 12px 10px;
+    flex: 1;
+    padding: 12px;
     border: none;
     border-radius: 12px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.2s ease;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
 }
+
+button:hover { transform: translateY(-3px); filter: brightness(1.1); }
+button:active { transform: translateY(1px); }
 
 .btn-start { background: var(--success); color: white; }
 .btn-stop { background: var(--warning); color: #333; }
 .btn-reset { background: var(--danger); color: white; }
 
-button:hover {
-    filter: brightness(1.1);
-    transform: translateY(-2px);
-}
-
-/* Input Section Styling */
 .settings {
-    margin-top: 2rem;
-    padding-top: 1.5rem;
     border-top: 1px solid rgba(255,255,255,0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+    padding-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #a0a0a0;
 }
 
-input[type="number"] {
-    width: 60px;
+input {
     background: #3d4446;
     border: 1px solid #555;
     color: white;
-    padding: 8px;
-    border-radius: 8px;
-    text-align: center;
-    font-size: 1rem;
-}
-
-/* MEDIA QUERIES */
-
-/* For very small devices (under 350px width) */
-@media (max-width: 350px) {
-    .timer-card { padding: 1rem; }
-    .circle-container { width: 160px; height: 160px; }
-    .progress-ring { width: 160px; height: 160px; }
-    /* We adjust SVG circle math via CSS if needed, 
-       but keeping a fixed 200px is usually safe for mobile */
-}
-
-/* For Tablets and Desktop */
-@media (min-width: 768px) {
-    .timer-card {
-        max-width: 450px;
-        padding: 3rem;
-    }
-}
-/* 1. Change cursor to a hand pointer */
-button {
-    cursor: pointer;
-    border: none;
-    transition: all 0.2s ease; /* Smooth transition for all changes */
-    position: relative;
-    overflow: hidden; /* For the ripple effect */
-}
-
-/* 2. Hover State: Button lifts up and brightens */
-button:hover {
-    filter: brightness(1.15);
-    transform: translateY(-3px); /* Lifts the button up */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* 3. Active State: Button looks "pressed" into the screen */
-button:active {
-    transform: translateY(1px); /* Moves down slightly */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    filter: brightness(0.9);
-}
-
-/* 4. Disabled State: If the timer is running, you might disable buttons */
-button:disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
-    transform: none;
+    padding: 5px;
+    border-radius: 6px;
+    width: 50px;
+    margin-left: 10px;
 }
