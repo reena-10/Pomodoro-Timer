@@ -1,6 +1,3 @@
-This is a template for a **README.md** file for your project. You can copy and paste this directly into your GitHub repository. I have tailored it to the specific link you provided.
-
----
 
 # 🍅 Pomodoro Timer
 
@@ -77,7 +74,8 @@ cd Pomodoro-Timer
 ## 📸 Screenshots
 
 
----
+<img width="1913" height="905" alt="Screenshot 2025-12-30 133505" src="https://github.com/user-attachments/assets/b0737b87-b3a0-4256-a4e2-7ffcae500cb1" />
+
 
 ## 🤝 Contributing
 
